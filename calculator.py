@@ -22,7 +22,17 @@ def modulus(a, b):
     return a % b
 
 
-print("Welcome to My Calculator")
+def show_operators():
+    print("\nAvailable operators:")
+    print("+  Addition")
+    print("-  Subtraction")
+    print("*  Multiplication")
+    print("/  Division")
+    print("%  Modulus")
+    print("q  Quit")
+
+
+print("Welcome to My Calculator!")
 
 while True:
 
@@ -33,8 +43,21 @@ while True:
         print("Invalid input! Please enter a number.")
         continue
 
+    # Show available operators
+    show_operators()
+
     # Get operator
-    operator = input("Enter operator (+, -, *, /, %): ")
+    operator = input("\nChoose an operator: ").strip()
+
+    # Quit
+    if operator.lower() == "q":
+        print("\nThank you for using My Calculator!")
+        break
+
+    # Validate operator
+    if operator not in ["+", "-", "*", "/", "%"]:
+        print("\nInvalid operator! Please choose +, -, *, /, or %.")
+        continue
 
     # Get second number
     try:
@@ -59,14 +82,12 @@ while True:
     elif operator == "%":
         result = modulus(num1, num2)
 
-    else:
-        result = "Invalid operator"
-
-    print("Result:", result)
+    # Display result
+    print(f"\nResult: {result}")
 
     # Ask whether to continue
-    again = input("\nDo you want to calculate again? (yes/no): ").lower()
+    again = input("\nDo you want to calculate again? (y/n): ").strip().lower()
 
-    if again != "yes":
-        print("Thank you for using My Calculator!")
+    if again != "y":
+        print("\nThank you for using My Calculator!")
         break
