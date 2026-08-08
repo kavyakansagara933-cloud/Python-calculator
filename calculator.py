@@ -29,65 +29,94 @@ def show_operators():
     print("*  Multiplication")
     print("/  Division")
     print("%  Modulus")
+    print("h  History")
     print("q  Quit")
 
 
-print("Welcome to My Calculator!")
+def show_history(history):
+    print("\n========== HISTORY ==========")
 
-while True:
+    if not history:
+        print("No calculations yet.")
+    else:
+        for calculation in history:
+            print(calculation)
 
-    # Get first number
-    try:
-        num1 = float(input("\nEnter first number: "))
-    except ValueError:
-        print("Invalid input! Please enter a number.")
-        continue
+    print("=============================")
 
-    # Show available operators
-    show_operators()
 
-    # Get operator
-    operator = input("\nChoose an operator: ").strip()
+def get_number(message):
+    while True:
+        try:
+            return float(input(message))
+        except ValueError:
+            print("Invalid input! Please enter a number.")
 
-    # Quit
-    if operator.lower() == "q":
-        print("\nThank you for using My Calculator!")
-        break
 
-    # Validate operator
-    if operator not in ["+", "-", "*", "/", "%"]:
-        print("\nInvalid operator! Please choose +, -, *, /, or %.")
-        continue
-
-    # Get second number
-    try:
-        num2 = float(input("Enter second number: "))
-    except ValueError:
-        print("Invalid input! Please enter a number.")
-        continue
-
-    # Perform calculation
+def calculate(num1, operator, num2):
     if operator == "+":
-        result = add(num1, num2)
+        return add(num1, num2)
 
     elif operator == "-":
-        result = subtract(num1, num2)
+        return subtract(num1, num2)
 
     elif operator == "*":
-        result = multiply(num1, num2)
+        return multiply(num1, num2)
 
     elif operator == "/":
-        result = divide(num1, num2)
+        return divide(num1, num2)
 
     elif operator == "%":
-        result = modulus(num1, num2)
+        return modulus(num1, num2)
 
-    # Display result
-    print(f"\nResult: {result}")
 
-    # Ask whether to continue
-    again = input("\nDo you want to calculate again? (y/n): ").strip().lower()
+def main():
+    print("Welcome to My Calculator!")
 
-    if again != "y":
-        print("\nThank you for using My Calculator!")
-        break
+    history = []
+
+    while True:
+
+        show_operators()
+
+        operator = input("\nChoose an operator: ").strip()
+
+        # History
+        if operator.lower() == "h":
+            show_history(history)
+            continue
+
+        # Quit
+        if operator.lower() == "q":
+            print("\nThank you for using My Calculator!")
+            break
+
+        # Validate operator
+        if operator not in ["+", "-", "*", "/", "%"]:
+            print("\nInvalid operator! Please choose +, -, *, /, %, h, or q.")
+            continue
+
+        # Get numbers
+        num1 = get_number("Enter first number: ")
+        num2 = get_number("Enter second number: ")
+
+        # Calculate
+        result = calculate(num1, operator, num2)
+
+        # Display result
+        print(f"\nResult: {result}")
+
+        # Save calculation
+        calculation = f"{num1} {operator} {num2} = {result}"
+        history.append(calculation)
+
+        # Continue?
+        again = input("\nDo you want to calculate again? (y/n): ").strip().lower()
+
+        if again != "y":
+            print("\nThank you for using My Calculator!")
+            break
+
+
+if __name__ == "__main__":
+    main()
