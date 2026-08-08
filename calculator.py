@@ -24,26 +24,33 @@ def modulus(a, b):
 
 print("Welcome to My Calculator")
 
-num1 = float(input("Enter first number: "))
-operator = input("Enter operator (+, -, *, /, %): ")
-num2 = float(input("Enter second number: "))
+while True:
+    num1 = float(input("\nEnter first number: "))
+    operator = input("Enter operator (+, -, *, /, %): ")
+    num2 = float(input("Enter second number: "))
 
-if operator == "+":
-    result = add(num1, num2)
+    if operator == "+":
+        result = add(num1, num2)
 
-elif operator == "-":
-    result = subtract(num1, num2)
+    elif operator == "-":
+        result = subtract(num1, num2)
 
-elif operator == "*":
-    result = multiply(num1, num2)
+    elif operator == "*":
+        result = multiply(num1, num2)
 
-elif operator == "/":
-    result = divide(num1, num2)
+    elif operator == "/":
+        result = divide(num1, num2)
 
-elif operator == "%":
-    result = modulus(num1, num2)
+    elif operator == "%":
+        result = modulus(num1, num2)
 
-else:
-    result = "Invalid operator"
+    else:
+        result = "Invalid operator"
 
-print("Result:", result)
+    print("Result:", result)
+
+    again = input("\nDo you want to calculate again? (yes/no): ").lower()
+
+    if again != "yes":
+        print("Thank you for using My Calculator!")
+        break
