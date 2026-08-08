@@ -25,10 +25,25 @@ def modulus(a, b):
 print("Welcome to My Calculator")
 
 while True:
-    num1 = float(input("\nEnter first number: "))
-    operator = input("Enter operator (+, -, *, /, %): ")
-    num2 = float(input("Enter second number: "))
 
+    # Get first number
+    try:
+        num1 = float(input("\nEnter first number: "))
+    except ValueError:
+        print("Invalid input! Please enter a number.")
+        continue
+
+    # Get operator
+    operator = input("Enter operator (+, -, *, /, %): ")
+
+    # Get second number
+    try:
+        num2 = float(input("Enter second number: "))
+    except ValueError:
+        print("Invalid input! Please enter a number.")
+        continue
+
+    # Perform calculation
     if operator == "+":
         result = add(num1, num2)
 
@@ -49,6 +64,7 @@ while True:
 
     print("Result:", result)
 
+    # Ask whether to continue
     again = input("\nDo you want to calculate again? (yes/no): ").lower()
 
     if again != "yes":
