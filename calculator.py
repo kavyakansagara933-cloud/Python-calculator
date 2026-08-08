@@ -1,26 +1,47 @@
+def add(a, b):
+    return a + b
+
+
+def subtract(a, b):
+    return a - b
+
+
+def multiply(a, b):
+    return a * b
+
+
+def divide(a, b):
+    if b == 0:
+        return "Cannot divide by zero"
+    return a / b
+
+
+def modulus(a, b):
+    if b == 0:
+        return "Cannot divide by zero"
+    return a % b
+
+
 print("Welcome to My Calculator")
 
 num1 = float(input("Enter first number: "))
-operator = input("Enter operator (+, -, *, /,, %): ")
+operator = input("Enter operator (+, -, *, /, %): ")
 num2 = float(input("Enter second number: "))
 
 if operator == "+":
-    result = num1 + num2
+    result = add(num1, num2)
 
 elif operator == "-":
-    result = num1 - num2
+    result = subtract(num1, num2)
 
 elif operator == "*":
-    result = num1 * num2
+    result = multiply(num1, num2)
 
 elif operator == "/":
-    if num2 == 0:
-        result = "Cannot divide by zero"
-    else:
-        result = num1 / num2
+    result = divide(num1, num2)
 
 elif operator == "%":
-    result = num1 % num2
+    result = modulus(num1, num2)
 
 else:
     result = "Invalid operator"
